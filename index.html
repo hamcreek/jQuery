@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+
+    <style>
+        .gallery-mobil{
+        margin-top: 100px;
+    }
+    .colors{
+        padding: 5px 15px;
+    }
+    .red{
+        background-color: red;
+    }
+    .white{
+        background-color: white;
+    }
+    .black{
+        background-color: black;
+    }
+    .tab-content{
+        display: none;
+    }
+    .active{
+        display: inline-block;
+    }
+
+
+    </style>
+</head>
+<body>
+
+    
+   <p class="paragraph"> if you click on me, i will disappear</p>
+   <p class="paragraph"> click me away!</p>
+
+   <button id="btn-hide"> Hide text </button>
+   <button id="btn-show"> show text </button>
+
+   <button id="btn-toggle"> Show </button>
+   <button id="btn-collapse"> collapse </button>
+   <button id="btn-add-class"> add class </button>
+   <button id="btn-remove-class"> remove class </button>
+   <button id="btn-add-background"> add background </button>
+
+
+   <div class="gallery mobile">
+    <div id="tab">
+        <nav>
+            <a href="#" class="active" data-id='1'><span class="colors red"></span> RED </a>
+            <a href="#" data-id='2'><span class="colors white"></span> white</a>
+            <a href="#" data-id='3'><span class="colors black"></span> black</a>
+        </nav>
+    
+        <div class="tab-content active" data-content='1'>
+            <img src="vario black-red.jpg"/>
+        </div>
+        <div class="tab-content" data-content='2'>
+            <img src="vario white.jpeg"/>
+        </div>
+        <div class="tab-content" data-content='3'>
+            <img src="vario full black.jpg"/>
+        </div>
+    </div>
+   </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+
+    $( "document" ).ready(function() {
+        $( "#btn-hide" ).click(function() {
+          $( ".paragraph" ).hide(450);
+        });
+        $( "#btn-show" ).click(function() {
+          $( ".paragraph" ).show(450);
+        });
+        $( "#btn-toggle" ).click(function() {
+          $( ".paragraph" ).slideToggle(450);
+        });
+        $( "#btn-collapse" ).click(function() {
+          $( ".paragraph" ).addClass("collapse");
+        });
+
+        $("#tab nav a").click(function(){
+  const id = $(this).data('id');
+  if(!$(this).hasClass('active')){
+    $("#tab nav a").removeClass('active');
+    $(this).addClass('active');
+    
+    $('.tab-content').hide();
+    $(`[data-content=${id}]`).fadeIn();
+  }
+});
+    });
+    </script>
+</body>
+</html>
